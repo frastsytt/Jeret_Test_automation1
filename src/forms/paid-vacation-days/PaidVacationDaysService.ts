@@ -9,20 +9,26 @@ export const PaidVacationDaysService = (): PaidVacationDaysServiceData => {
     if (isNaN(age) || isNaN(service)) return undefined;
     
     let days = 22;
-    
-    if ((age >= 45 && age < 60) || (service >= 15 && service < 30)) {
-      days = days + 2;
-    }
-    
+
+
     if (age < 18 || age >= 60 || service >= 30) {
       days = days + 5;
+      if (age >= 60 && service >= 30) {
+        days = days + 3;
+      }
+      return days;
     }
-    
-    if (age >= 60 && service >= 30) {
-      days = days + 3;
+
+    if ((age >= 45 && age < 60) || (service >= 15 && service < 30)) {
+      days = days + 2;
+      return days;
     }
-    
-    return days;
+
+    else {
+      return days;
+    }
+
+
   };
   
   return {calculate};

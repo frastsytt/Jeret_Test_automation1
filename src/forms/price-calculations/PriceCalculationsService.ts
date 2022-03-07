@@ -11,11 +11,12 @@ export const PriceCalculationService = (): PriceCalculationServiceData => {
     
     if (isNaN(price) || isNaN(weight)) return undefined;
 
-    if (price > 200) {
-      result = creditCard == false && weight < 5 ? result * 0.85 : result * 0.9
+    if (price >= 200) {
+      result = creditCard && weight < 5 ? result * 0.85 : result * 0.9
     }
-    if (price < 200 && creditCard) {
-      result = result * 0.96;
+
+    if (price < 200) {
+      result = creditCard ? result * 0.97 : result
     }
 
 
